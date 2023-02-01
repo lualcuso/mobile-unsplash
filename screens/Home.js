@@ -74,6 +74,12 @@ const Home = ({navigation}) => {
           setItems={setColorItems}
           style={styles.filterInput}
           zIndex={1}
+          onChangeValue={() => {
+            if(currentPage > 1) {
+              setImagesList([]);
+              setCurrentPage(1);
+            }
+          }}
         />
       </View>
       <View style={styles.filterInputContainer}>
@@ -87,6 +93,12 @@ const Home = ({navigation}) => {
           setItems={setOrientationItems}
           style={styles.filterInput}
           zIndex={1}
+          onChangeValue={() => {
+            if(currentPage > 1) {
+              setImagesList([]);
+              setCurrentPage(1);
+            }
+          }}
         />
       </View>
     </View>
