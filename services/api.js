@@ -1,8 +1,8 @@
 const baseURL = 'https://api.unsplash.com';
 
-export const searchImages = async (page, query, color, orientation) => {
+export const searchImages = async (page, query, color = null, orientation = null) => {
   const searchResult = await fetch(
-    `${baseURL}/search/photos/?page=${page}&query=${query}`,
+    `${baseURL}/search/photos/?page=${page}&query=${query}${color ? `&color=${color}` : ''}${orientation ? `&orientation=${orientation}` : ''}`,
     { method: 'GET', headers: { Authorization: 'Client-ID 9OrTxAvDHhbdGnBnn3XJ0Du0cHhcoFXKvJ3QDpuwGFk' }}
     );
   const searchResultJSON = await searchResult.json();

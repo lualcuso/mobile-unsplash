@@ -3,11 +3,14 @@ import { Alert, Button, Image, StyleSheet, Text, View } from "react-native"
 import { download } from "../utils/file"
 
 const ImageDownload = ({route}) => {
+  const { image } = route.params;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{route.params.title}</Text>
-      <Image style={styles.image} source={{uri: route.params.source}}/>
-      <Button title="Download" onPress={() => download(route.params.id, route.params.download_url).then(() => {
+      <Image style={styles.image} source={{uri: image.urls.full}}/>
+      <Text style={styles.author}>{`Author: ${image.user.name}`}</Text>
+      <Text>{`${image.likes} Likes`}</Text>
+      <Button title="Download" onPress={() => download(image.id, image.links.download).then(() => {
         Alert.alert('Success', 'Image downloaded successfully', [ {text: 'OK'} ]);
       })}/>
     </View>
@@ -20,13 +23,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center"
   },
-  title: {
-    fontSize: 24,
+  author: {
+    fontSize: 16,
     marginVertical: 10
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 350,
     marginVertical: 10
   }
 })

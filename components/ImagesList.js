@@ -12,7 +12,7 @@ const ImagesList = ({images, onFetchMore, navigation}) => {
         renderItem={({item}) => 
         (
           <Pressable onPress={() => navigation.navigate('Image', {
-            download_url: item.links.download, source: item.urls.full, title: item.user.name, id: item.id})}>
+            image: item})}>
             <ImageDetail preview={item.urls.small} author={item.user.name} description={item.user.portfolio_url}/>
           </Pressable>
         )}
@@ -24,7 +24,8 @@ const ImagesList = ({images, onFetchMore, navigation}) => {
 
 const styles = StyleSheet.create({
   list: {
-    flexGrow: 0
+    flexGrow: 0,
+    zIndex: -1
   },
   item: {
     display: "flex",
