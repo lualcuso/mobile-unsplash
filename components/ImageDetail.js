@@ -1,13 +1,9 @@
 import { Image, StyleSheet, Text, View} from "react-native";
 
-const ImageDetail = ({preview, author, description}) => {
+const ImageDetail = ({preview}) => {
   return (
     <View style={styles.item}>
       <Image style={styles.preview} source={{uri: preview}}/>
-      <View style={styles.info}>
-        <Text style={styles.author}>{author}</Text>
-        <Text style={styles.description}>{description}</Text>
-      </View>
     </View>
   )
 }
@@ -16,6 +12,7 @@ const styles = StyleSheet.create({
   item: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
     padding: 10,
   },
   author: {
@@ -32,8 +29,8 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   preview: {
-    width: 100,
-    height: 100,
+    width: 350,
+    height: 350,
   }
 });
 

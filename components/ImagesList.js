@@ -13,7 +13,7 @@ const ImagesList = ({images, onFetchMore, navigation}) => {
         (
           <Pressable onPress={() => navigation.navigate('Image', {
             download_url: item.links.download, source: item.urls.full, title: item.user.name, id: item.id})}>
-            <ImageDetail preview={item.urls.thumb} author={item.user.name} description={item.user.portfolio_url}/>
+            <ImageDetail preview={item.urls.small} author={item.user.name} description={item.user.portfolio_url}/>
           </Pressable>
         )}
         keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />}
