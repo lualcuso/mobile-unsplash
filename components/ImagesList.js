@@ -1,4 +1,4 @@
-import { FlatList, Image, StatusBar, StyleSheet, Text, View} from "react-native";
+import { FlatList, Image, StyleSheet, Text, View} from "react-native";
 
 const Item = ({author, description, preview}) => (
   <View style={styles.item}>
@@ -14,11 +14,12 @@ const Divider = () => {
   return <View style={styles.divider} />
 }
 
-const ImagesList = ({images}) => {
+const ImagesList = ({images, onFetchMore}) => {
   return (
       <FlatList style={styles.list} data={images}
         renderItem={({item}) => <Item preview={item.urls.thumb} author={item.user.name} description={item.user.portfolio_url}/>}
-        keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />} />
+        keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />} 
+        onEndReachedThreshold={0.2} onEndReached={onFetchMore}/>
   )
 }
 
