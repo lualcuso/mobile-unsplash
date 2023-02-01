@@ -74,6 +74,7 @@ const Home = ({navigation}) => {
           setItems={setColorItems}
           style={styles.filterInput}
           zIndex={1}
+          placeholder={"Select an option"}
           onChangeValue={() => {
             if(currentPage > 1) {
               setImagesList([]);
@@ -93,6 +94,7 @@ const Home = ({navigation}) => {
           setItems={setOrientationItems}
           style={styles.filterInput}
           zIndex={1}
+          placeholder={"Select an option"}
           onChangeValue={() => {
             if(currentPage > 1) {
               setImagesList([]);

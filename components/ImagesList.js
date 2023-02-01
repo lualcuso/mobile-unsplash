@@ -1,4 +1,4 @@
-import { FlatList, Pressable, StyleSheet, View} from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 
 import ImageDetail from "./ImageDetail";
 
@@ -16,9 +16,11 @@ const ImagesList = ({images, onFetchMore, navigation}) => {
             <ImageDetail preview={item.urls.small} author={item.user.name} description={item.user.portfolio_url}/>
           </Pressable>
         )}
-        keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />}
-        
-        onEndReachedThreshold={0.2} onEndReached={onFetchMore}/>
+        keyExtractor={item => item.id} 
+        ItemSeparatorComponent={<Divider />}
+        onEndReachedThreshold={0.2} onEndReached={onFetchMore}
+        ListEmptyComponent={<View style={styles.empty}><Text>Please execute a search to load images</Text></View>}
+        />
   )
 }
 
@@ -52,6 +54,10 @@ const styles = StyleSheet.create({
   preview: {
     width: 100,
     height: 100,
+  },
+  empty: {
+    padding: 30,
+    alignItems: "center"
   }
 });
 
