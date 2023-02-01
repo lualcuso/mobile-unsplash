@@ -1,30 +1,28 @@
-import { FlatList, Image, StyleSheet, Text, View} from "react-native";
+import { FlatList, Pressable, StyleSheet, View} from "react-native";
 
-const Item = ({author, description, preview}) => (
-  <View style={styles.item}>
-    <Image style={styles.preview} source={{uri: preview}}/>
-    <View style={styles.info}>
-      <Text style={styles.author}>{author}</Text>
-      <Text style={styles.description}>{description}</Text>
-    </View>
-  </View>
-);
+import ImageDetail from "./ImageDetail";
 
 const Divider = () => {
   return <View style={styles.divider} />
 }
 
-const ImagesList = ({images, onFetchMore}) => {
+const ImagesList = ({images, onFetchMore, navigation}) => {
   return (
       <FlatList style={styles.list} data={images}
-        renderItem={({item}) => <Item preview={item.urls.thumb} author={item.user.name} description={item.user.portfolio_url}/>}
-        keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />} 
+        renderItem={({item}) => 
+        (
+          <Pressable onPress={() => navigation.navigate('Image', {
+            download_url: item.links.download, source: item.urls.full, title: item.user.name, id: item.id})}>
+            <ImageDetail preview={item.urls.thumb} author={item.user.name} description={item.user.portfolio_url}/>
+          </Pressable>
+        )}
+        keyExtractor={item => item.id} ItemSeparatorComponent={<Divider />}
+        
         onEndReachedThreshold={0.2} onEndReached={onFetchMore}/>
   )
 }
 
 const styles = StyleSheet.create({
-  
   list: {
     flexGrow: 0
   },

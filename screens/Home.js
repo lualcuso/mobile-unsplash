@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, SafeAreaView, StyleSheet, TextInput, View } from "react-native";
 import ImagesList from "../components/ImagesList";
 import { searchImages } from "../services/api";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [totalPages, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +25,7 @@ const Home = () => {
   }, [currentPage])
 
   return(
-  <View style={styles.container}>
+  <SafeAreaView style={styles.container}>
     <View style={styles.searchContainer}>
       <TextInput style={styles.searchInput} placeholder="Enter search term" 
       value={searchTerm} onChangeText={term => setSearchTerm(term)}  />
@@ -34,12 +34,12 @@ const Home = () => {
         getImages(1, searchTerm)
       }}/>
     </View>
-    <ImagesList images={imagesList} onFetchMore={() => {
+    <ImagesList images={imagesList} navigation={navigation} onFetchMore={() => {
       if (currentPage < totalPages) {
         setCurrentPage(currentPage + 1)
       }
     }} />
-  </View>
+  </SafeAreaView>
   )
 }
 
